@@ -56,7 +56,7 @@ class IndexPage extends React.Component {
 	_updateCountDown() {
 		let worned = (this.state.rest <= this.state.warningTime);
 		if (!this.state.worned && worned) {
-			this.playSound('seWarning');
+			this.sound('seWarning', true);
 		}
 
 		let highWorned = (this.state.rest <= this.state.highWarningTime);
@@ -66,7 +66,7 @@ class IndexPage extends React.Component {
 		if (rest <= 0) {
 			rest = 0;
 			if (this.state.rest > 0) {
-				this.playSound('seFinished');
+				this.sound('seFinished', true);
 			}
 		}
 
@@ -91,10 +91,11 @@ class IndexPage extends React.Component {
 
 	/**
 	 * @param {string} name The name of the sound effect.
+	 * @param {boolean} toggle Set `true` to play or ignore, set `false` to stop or do nothing. If omitted, toggle playing.
 	 * @example
-	 * this.playSound('seFinished');
+	 * this.sound('seFinished');
 	 */
-	playSound(name) {
+	sound(name, toggle) {
 		let audio = this.refs[name];
 		if (!audio) {
 			throw new Error(`Wrong audio name: ${name}`);
@@ -102,7 +103,18 @@ class IndexPage extends React.Component {
 
 		let playingFlagName = `_playing_${name}`;
 
-		if (!this[playingFlagName] || audio.currentTime >= audio.duration) {
+		let bPlay;
+		if (toggle === true) {
+			bPlay = true;
+		}
+		else if (toggle === false) {
+			bPlay = false;
+		}
+		else if (!this[playingFlagName] || audio.currentTime >= audio.duration) {
+			bPlay = true;
+		}
+
+		if (bPlay) {
 			audio.play();
 			this[playingFlagName] = true;
 		}
@@ -131,11 +143,11 @@ class IndexPage extends React.Component {
 	}
 
 	playWarning_onClick(event) {
-		this.playSound('seWarning');
+		this.sound('seWarning');
 	}
 
 	playFinished_onClick(event) {
-		this.playSound('seFinished');
+		this.sound('seFinished');
 	}
 
 	window_onResize(event) {
