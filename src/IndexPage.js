@@ -28,14 +28,14 @@ class IndexPage extends React.Component {
 
 	constructor(props) {
 		super(props);
-		let period = 300000;  // 5m
 		this.state = {
 			highWarningTime: 10000,  // 10s
-			period: period,
-			rest: period,
+			period: 300000,  // 5m
 			warningTime: 60000,  // 1m
 			width: document.body.clientWidth,
 		};
+
+		this.stopCountDown();
 	}
 
 	/**
