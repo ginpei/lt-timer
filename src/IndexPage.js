@@ -40,7 +40,7 @@ class IndexPage extends React.Component {
 		window.clearInterval(this._tmCountDown);
 	}
 
-	play(name) {
+	playSound(name) {
 		let audio = this.refs[name];
 		if (!audio) {
 			throw new Error(`Wrong audio name: ${name}`);
@@ -74,10 +74,10 @@ class IndexPage extends React.Component {
 	}
 
 	playWarning_onClick(event) {
-		this.play('seWarning');
+		this.playSound('seWarning');
 	}
 
 	playFinished_onClick(event) {
-		this.play('seFinished');
+		this.playSound('seFinished');
 	}
 }
