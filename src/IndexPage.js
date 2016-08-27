@@ -113,6 +113,15 @@ class IndexPage extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		let f = this._bound_window_onResize = this.window_onResize.bind(this);
+		window.addEventListener('resize', f);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this._bound_window_onResize);
+	}
+
 	startButton_onClick(event) {
 		this.startCountDown();
 	}
@@ -127,5 +136,11 @@ class IndexPage extends React.Component {
 
 	playFinished_onClick(event) {
 		this.playSound('seFinished');
+	}
+
+	window_onResize(event) {
+		this.setState({
+			width: document.body.clientWidth,
+		});
 	}
 }
