@@ -160,7 +160,7 @@ class IndexPage extends React.Component {
 	}
 
 	playFinished_onClick(event) {
-		let startedAt = Date.now() - this.state.period + this.state.highWarningTime;
+		let startedAt = Date.now() - this.state.period;
 		this.setState({
 			startedAt: startedAt,
 		});
