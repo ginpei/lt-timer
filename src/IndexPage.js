@@ -1,8 +1,10 @@
 class IndexPage extends React.Component {
 	render() {
+		let classNameList = ['IndexPage'];
+
 		return (
-			<div>
-				<h1>Timelimit</h1>
+			<div className={classNameList.join(' ')}>
+				<TimeRest rest={this.state.rest}></TimeRest>
 				<div>
 					<input type="hidden" value={this.state.period} />
 					<button onClick={this.startButton_onClick.bind(this)}>Start</button>
@@ -10,7 +12,6 @@ class IndexPage extends React.Component {
 					<button onClick={this.playWarning_onClick.bind(this)}>Warning</button>
 					<button onClick={this.playFinished_onClick.bind(this)}>Finished</button>
 				</div>
-				<TimeRest rest={this.state.rest}></TimeRest>
 				<audio ref="seWarning" src="lib/D0002011516_00000_A_001.m4a"></audio>
 				<audio ref="seFinished" src="lib/D0002011522_00000_A_001.m4a"></audio>
 			</div>

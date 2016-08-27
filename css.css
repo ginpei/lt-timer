@@ -1,0 +1,16 @@
+.IndexPage {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 100%;
+}
+.IndexPage.is-warned {
+	background-color: #f00;
+	color: #fff;
+}
+.IndexPage .TimeRest {
+	font-family: Impact, sans-serif;
+	font-size: 300px;
+}

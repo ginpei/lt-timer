@@ -8,7 +8,7 @@ class TimeRest extends React.Component {
 		let sSec = `0${sec}`.slice(-2);  // 9 -> "09"
 
 		return (
-			<span>{min}:{sSec}</span>
+			<span className="TimeRest">{min}:{sSec}</span>
 		);
 	}
 
