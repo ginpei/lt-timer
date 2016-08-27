@@ -51,6 +51,7 @@ class IndexPage extends React.Component {
 		window.clearInterval(this._tmCountDown);
 
 		this.setState({
+			rest: this.state.period,
 			startedAt: null,
 		});
 	}
