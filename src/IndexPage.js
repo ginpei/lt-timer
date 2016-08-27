@@ -19,9 +19,10 @@ class IndexPage extends React.Component {
 
 	constructor(props) {
 		super(props);
+		let period = 300000;  // 5m
 		this.state = {
-			period: 300000,  // 5m
-			rest: 0,
+			period: period,
+			rest: period,
 		};
 	}
 
