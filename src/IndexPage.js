@@ -86,8 +86,10 @@ class IndexPage extends React.Component {
 		this.sound('seFinished', false);
 
 		this.setState({
+			highWorned: false,
 			rest: this.state.period,
 			startedAt: null,
+			worned: false,
 		});
 	}
 
