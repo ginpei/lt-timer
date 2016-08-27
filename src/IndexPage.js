@@ -29,6 +29,10 @@ class IndexPage extends React.Component {
 	_startCountDown() {
 		this._stopCountDown();
 
+		this.setState({
+			startedAt: Date.now(),
+		});
+
 		this._tmCountDown = window.setInterval(()=>{
 			let now = Date.now();
 			this.setState({
@@ -39,6 +43,10 @@ class IndexPage extends React.Component {
 
 	_stopCountDown() {
 		window.clearInterval(this._tmCountDown);
+
+		this.setState({
+			startedAt: null,
+		});
 	}
 
 	playSound(name) {
@@ -61,16 +69,10 @@ class IndexPage extends React.Component {
 	}
 
 	startButton_onClick(event) {
-		this.setState({
-			startedAt: Date.now(),
-		});
 		this._startCountDown();
 	}
 
 	stopButton_onClick(event) {
-		this.setState({
-			startedAt: null,
-		});
 		this._stopCountDown();
 	}
 
