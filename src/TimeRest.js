@@ -6,9 +6,23 @@ class TimeRest extends React.Component {
 		let min = Math.floor(restSec / 60);
 		let sec = restSec % 60;
 		let sSec = `0${sec}`.slice(-2);  // 9 -> "09"
+		let sSec2 = sSec.charAt(0);
+		let sSec1 = sSec.charAt(1);
+
+		let totalWidth = this.props.width;
+		let figureWidth = totalWidth * 2 / 8;
+		let delimiterWidth = totalWidth * 1 / 8;
+		let fontSize = figureWidth * 1.5;
+		let figureStyle = {  fontSize: `${fontSize}px`, width: `${figureWidth}px` };
+		let delimiterStyle = { fontSize: `${fontSize}px`, width: `${delimiterWidth}px` };
 
 		return (
-			<span className="TimeRest">{min}:{sSec}</span>
+			<span className="TimeRest">
+				<span style={figureStyle} className="TimeRest-figure TimeRest-min">{min}</span>
+				<span style={delimiterStyle} className="TimeRest-figure TimeRest-delimiter">:</span>
+				<span style={figureStyle} className="TimeRest-figure TimeRest-sec2">{sSec2}</span>
+				<span style={figureStyle} className="TimeRest-figure TimeRest-sec1">{sSec1}</span>
+			</span>
 		);
 	}
 

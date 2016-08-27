@@ -12,7 +12,7 @@ class IndexPage extends React.Component {
 
 		return (
 			<div className={classNameList.join(' ')}>
-				<TimeRest rest={this.state.rest}></TimeRest>
+				<TimeRest rest={this.state.rest} width={this.state.width}></TimeRest>
 				<div>
 					<input type="hidden" value={this.state.period} />
 					<button onClick={this.startButton_onClick.bind(this)}>Start</button>
@@ -34,6 +34,7 @@ class IndexPage extends React.Component {
 			period: period,
 			rest: period,
 			warningTime: 60000,  // 1m
+			width: document.body.clientWidth,
 		};
 	}
 
