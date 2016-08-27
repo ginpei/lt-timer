@@ -36,6 +36,12 @@ class IndexPage extends React.Component {
 			warningTime: 60000,  // 1m
 			width: document.body.clientWidth,
 		};
+
+		// // debug
+		// this.state.period = 10000;
+		// this.state.warningTime = 7000;
+		// this.state.highWarningTime = 4000;
+
 	}
 
 	/**
