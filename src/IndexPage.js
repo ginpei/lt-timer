@@ -29,8 +29,8 @@ class IndexPage extends React.Component {
 	/**
 	 * Start counting down.
 	 */
-	_startCountDown() {
-		this._stopCountDown();
+	startCountDown() {
+		this.stopCountDown();
 
 		this.setState({
 			startedAt: Date.now(),
@@ -47,7 +47,7 @@ class IndexPage extends React.Component {
 	/**
 	 * Stop counting down.
 	 */
-	_stopCountDown() {
+	stopCountDown() {
 		window.clearInterval(this._tmCountDown);
 
 		this.setState({
@@ -80,11 +80,11 @@ class IndexPage extends React.Component {
 	}
 
 	startButton_onClick(event) {
-		this._startCountDown();
+		this.startCountDown();
 	}
 
 	stopButton_onClick(event) {
-		this._stopCountDown();
+		this.stopCountDown();
 	}
 
 	playWarning_onClick(event) {
