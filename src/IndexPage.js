@@ -26,6 +26,9 @@ class IndexPage extends React.Component {
 		};
 	}
 
+	/**
+	 * Start counting down.
+	 */
 	_startCountDown() {
 		this._stopCountDown();
 
@@ -41,6 +44,9 @@ class IndexPage extends React.Component {
 		}, 100);
 	}
 
+	/**
+	 * Stop counting down.
+	 */
 	_stopCountDown() {
 		window.clearInterval(this._tmCountDown);
 
@@ -49,6 +55,11 @@ class IndexPage extends React.Component {
 		});
 	}
 
+	/**
+	 * @param {string} name The name of the sound effect.
+	 * @example
+	 * this.playSound('seFinished');
+	 */
 	playSound(name) {
 		let audio = this.refs[name];
 		if (!audio) {
