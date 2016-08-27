@@ -82,6 +82,8 @@ class IndexPage extends React.Component {
 	 */
 	stopCountDown() {
 		window.clearInterval(this._tmCountDown);
+		this.sound('seWarning', false);
+		this.sound('seFinished', false);
 
 		this.setState({
 			rest: this.state.period,
