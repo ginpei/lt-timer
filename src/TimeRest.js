@@ -1,7 +1,7 @@
 class TimeRest extends React.Component {
 	render() {
 		let rest = this.props.rest;
-		let restSec = Math.floor(rest / 1000);
+		let restSec = Math.ceil(rest / 1000);
 
 		let min = Math.floor(restSec / 60);
 		let sec = restSec % 60;

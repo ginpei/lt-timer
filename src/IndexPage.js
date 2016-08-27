@@ -1,6 +1,14 @@
 class IndexPage extends React.Component {
 	render() {
 		let classNameList = ['IndexPage'];
+		if (this.state.highWorned) {
+			if (Math.floor(this.state.rest / 1000) % 2) {
+				classNameList.push('is-warned');
+			}
+		}
+		else if (this.state.worned) {
+			classNameList.push('is-warned');
+		}
 
 		return (
 			<div className={classNameList.join(' ')}>
@@ -22,8 +30,10 @@ class IndexPage extends React.Component {
 		super(props);
 		let period = 300000;  // 5m
 		this.state = {
+			highWarningTime: 10000,  // 10s
 			period: period,
 			rest: period,
+			warningTime: 60000,  // 1m
 		};
 	}
 
@@ -38,11 +48,32 @@ class IndexPage extends React.Component {
 		});
 
 		this._tmCountDown = window.setInterval(()=>{
-			let now = Date.now();
-			this.setState({
-				rest: this.state.period - (now - this.state.startedAt),
-			});
+			this._updateCountDown();
 		}, 100);
+	}
+
+	_updateCountDown() {
+		let worned = (this.state.rest <= this.state.warningTime);
+		if (!this.state.worned && worned) {
+			this.playSound('seWarning');
+		}
+
+		let highWorned = (this.state.rest <= this.state.highWarningTime);
+
+		let now = Date.now();
+		let rest = this.state.period - (now - this.state.startedAt);
+		if (rest <= 0) {
+			rest = 0;
+			if (this.state.rest > 0) {
+				this.playSound('seFinished');
+			}
+		}
+
+		this.setState({
+			highWorned: highWorned,
+			rest: rest,
+			worned: worned,
+		});
 	}
 
 	/**
