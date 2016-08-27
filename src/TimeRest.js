@@ -18,10 +18,10 @@ class TimeRest extends React.Component {
 
 		return (
 			<span className="TimeRest">
-				<span style={figureStyle} className="TimeRest-figure TimeRest-min">{min}</span>
-				<span style={delimiterStyle} className="TimeRest-figure TimeRest-delimiter">:</span>
-				<span style={figureStyle} className="TimeRest-figure TimeRest-sec2">{sSec2}</span>
-				<span style={figureStyle} className="TimeRest-figure TimeRest-sec1">{sSec1}</span>
+				<span style={figureStyle} className="TimeRest-figure">{min}</span>
+				<span style={delimiterStyle} className="TimeRest-figure">:</span>
+				<span style={figureStyle} className="TimeRest-figure">{sSec2}</span>
+				<span style={figureStyle} className="TimeRest-figure">{sSec1}</span>
 			</span>
 		);
 	}
