@@ -1,8 +1,13 @@
 {
   "private": "true",
   "scripts": {
-    "start": "echo Hello world!"
+    "start": "babel src/ -d dist/ --presets 'react'"
   },
-  "dependencies": {},
+  "dependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
+  },
   "devDependencies": {}
 }
