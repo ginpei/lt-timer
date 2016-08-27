@@ -16,7 +16,7 @@ class IndexPage extends React.Component {
 				<div>
 					<input type="hidden" value={this.state.period} />
 					<button onClick={this.startButton_onClick.bind(this)}>Start</button>
-					<button onClick={this.stopButton_onClick.bind(this)}>Stop</button>
+					<button onClick={this.resetButton_onClick.bind(this)}>Reset</button>
 					<button onClick={this.playWarning_onClick.bind(this)}>Warning</button>
 					<button onClick={this.playFinished_onClick.bind(this)}>Finished</button>
 				</div>
@@ -42,7 +42,7 @@ class IndexPage extends React.Component {
 	 * Start counting down.
 	 */
 	startCountDown() {
-		this.stopCountDown();
+		this.resetCountDown();
 
 		this.setState({
 			startedAt: Date.now(),
@@ -78,9 +78,9 @@ class IndexPage extends React.Component {
 	}
 
 	/**
-	 * Stop counting down.
+	 * Reset counting down.
 	 */
-	stopCountDown() {
+	resetCountDown() {
 		window.clearInterval(this._tmCountDown);
 		this.sound('seWarning', false);
 		this.sound('seFinished', false);
@@ -140,8 +140,8 @@ class IndexPage extends React.Component {
 		this.startCountDown();
 	}
 
-	stopButton_onClick(event) {
-		this.stopCountDown();
+	resetButton_onClick(event) {
+		this.resetCountDown();
 	}
 
 	playWarning_onClick(event) {
