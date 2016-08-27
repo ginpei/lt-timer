@@ -2,7 +2,7 @@ class IndexPage extends React.Component {
 	render() {
 		let classNameList = ['IndexPage'];
 		if (this.state.highWorned) {
-			if (Math.floor(this.state.rest / 1000) % 2) {
+			if (this.state.rest <= 0 || Math.floor(this.state.rest / 1000) % 2) {
 				classNameList.push('is-warned');
 			}
 		}
