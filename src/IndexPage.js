@@ -157,8 +157,6 @@ class IndexPage extends React.Component {
 		this.setState({
 			startedAt: startedAt,
 		});
-
-		this.sound('seWarning');
 	}
 
 	playFinished_onClick(event) {
@@ -166,8 +164,6 @@ class IndexPage extends React.Component {
 		this.setState({
 			startedAt: startedAt,
 		});
-
-		this.sound('seFinished');
 	}
 
 	window_onResize(event) {
