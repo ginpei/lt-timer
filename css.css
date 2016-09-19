@@ -1,18 +1,3 @@
-button {
-	border: 1px solid #999;
-	border-radius: 4px;
-	box-shadow:
-		2px 2px 4px rgba(255,255,255,0.1) inset,
-		-2px -2px 4px rgba(0,0,0,0.1) inset;
-	margin: 10px;
-	padding: 10px;
-	vertical-align: middle;
-}
-button:active {
-	box-shadow: none;
-	padding: 11px 9px 9px 11px;
-}
-
 .IndexPage {
 	height: 100%;
 	left: 0;
@@ -27,6 +12,20 @@ button:active {
 }
 .IndexPage .TimeRest {
 	font-family: Impact, sans-serif;
+}
+.IndexPage-controller {
+	display: flex;
+	justify-content: spread;
+}
+.IndexPage-controller-button {
+	background-color: #f9f9f9;
+	border: 4px solid #eee;
+	flex: 1;
+	margin: 4px;
+	min-height: 100px;
+}
+.IndexPage-controller-button:active {
+	background-color: #ccc;
 }
 
 .TimeRest-figure {

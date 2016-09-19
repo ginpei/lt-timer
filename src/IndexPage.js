@@ -13,12 +13,12 @@ class IndexPage extends React.Component {
 		return (
 			<div className={classNameList.join(' ')}>
 				<TimeRest rest={this.state.rest} width={this.state.width}></TimeRest>
-				<div>
+				<div className="IndexPage-controller">
 					<input type="hidden" value={this.state.period} />
-					<button onClick={this.startButton_onClick.bind(this)}>Start</button>
-					<button onClick={this.resetButton_onClick.bind(this)}>Reset</button>
-					<button onClick={this.playWarning_onClick.bind(this)}>Warning</button>
-					<button onClick={this.playFinished_onClick.bind(this)}>Finished</button>
+					<button onClick={this.startButton_onClick.bind(this)} className="IndexPage-controller-button">Start</button>
+					<button onClick={this.resetButton_onClick.bind(this)} className="IndexPage-controller-button">Reset</button>
+					<button onClick={this.playWarning_onClick.bind(this)} className="IndexPage-controller-button">Warning</button>
+					<button onClick={this.playFinished_onClick.bind(this)} className="IndexPage-controller-button">Finished</button>
 				</div>
 				<audio ref="seWarning" src="lib/D0002011516_00000_A_001.m4a"></audio>
 				<audio ref="seFinished" src="lib/D0002011522_00000_A_001.m4a"></audio>
