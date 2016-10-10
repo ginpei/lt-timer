@@ -2,6 +2,7 @@
   "private": "true",
   "scripts": {
     "build": "babel src/ -d dist/ --presets 'react'",
+    "start": "npm run watch_build",
     "watch_build": "chokidar src/* -c 'npm run build'"
   },
   "dependencies": {
