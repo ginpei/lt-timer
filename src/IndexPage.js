@@ -1,5 +1,6 @@
 class IndexPage extends React.Component {
 	render() {
+		let running = (this.state.status === 'running');
 		let classNameList = ['IndexPage'];
 		if (this.state.highWorned) {
 			if (this.state.rest <= 0 || Math.floor(this.state.rest / 1000) % 2) {
@@ -17,8 +18,8 @@ class IndexPage extends React.Component {
 					<input type="hidden" value={this.state.period} />
 					<button onClick={this.startButton_onClick.bind(this)} className="IndexPage-controller-button">Start</button>
 					<button onClick={this.resetButton_onClick.bind(this)} className="IndexPage-controller-button">Reset</button>
-					<button onClick={this.playWarning_onClick.bind(this)} className="IndexPage-controller-button">Warning</button>
-					<button onClick={this.playFinished_onClick.bind(this)} className="IndexPage-controller-button">Finished</button>
+					<button onClick={this.playWarning_onClick.bind(this)} className="IndexPage-controller-button" disabled={!running}>Warning</button>
+					<button onClick={this.playFinished_onClick.bind(this)} className="IndexPage-controller-button" disabled={!running}>Finished</button>
 				</div>
 				<audio ref="seWarning" src="lib/D0002011516_00000_A_001.m4a"></audio>
 				<audio ref="seFinished" src="lib/D0002011522_00000_A_001.m4a"></audio>
@@ -32,6 +33,7 @@ class IndexPage extends React.Component {
 		this.state = {
 			highWarningTime: 10000,  // 10s
 			period: period,
+			status: 'ready',
 			rest: period,
 			warningTime: 60000,  // 1m
 			width: document.body.clientWidth,
@@ -52,6 +54,7 @@ class IndexPage extends React.Component {
 
 		this.setState({
 			startedAt: Date.now(),
+			status: 'running',
 		});
 
 		this._tmCountDown = window.setInterval(()=>{
@@ -95,6 +98,7 @@ class IndexPage extends React.Component {
 			highWorned: false,
 			rest: this.state.period,
 			startedAt: null,
+			status: 'ready',
 			worned: false,
 		});
 	}

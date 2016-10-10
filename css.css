@@ -27,6 +27,9 @@
 .IndexPage-controller-button:active {
 	background-color: #ccc;
 }
+.IndexPage-controller-button:disabled {
+	background-color: #ccc;
+}
 
 .TimeRest-figure {
 	display: inline-block;
