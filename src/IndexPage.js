@@ -63,20 +63,17 @@ class IndexPage extends React.Component {
 	}
 
 	_updateCountDown() {
+		let rest = Math.max(0, this.state.period - (now - this.state.startedAt));
 		let worned = (this.state.rest <= this.state.warningTime);
-		if (!this.state.worned && worned) {
+		let highWorned = (this.state.rest <= this.state.highWarningTime);
+		let now = Date.now();
+
+		if (worned && !this.state.worned) {
 			this.sound('seWarning', true);
 		}
 
-		let highWorned = (this.state.rest <= this.state.highWarningTime);
-
-		let now = Date.now();
-		let rest = this.state.period - (now - this.state.startedAt);
-		if (rest <= 0) {
-			rest = 0;
-			if (this.state.rest > 0) {
-				this.sound('seFinished', true);
-			}
+		if (rest <= 0 && this.state.rest > 0) {
+			this.sound('seFinished', true);
 		}
 
 		this.setState({
