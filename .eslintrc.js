@@ -9,7 +9,10 @@ module.exports = {
 			"jsx": true
 		}
 	},
-	"extends": "eslint:recommended",
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+	],
 	"rules": {
 		"accessor-pairs": "error",
 		"array-bracket-spacing": "error",
@@ -249,6 +252,8 @@ module.exports = {
 			"single"
 		],
 		"radix": "error",
+		"react/jsx-uses-react": "error",
+		"react/jsx-uses-vars": "error",
 		"require-jsdoc": "off",
 		"require-yield": "error",
 		"rest-spread-spacing": "error",
