@@ -1,4 +1,5 @@
 import React from 'react';
+import Timer from './models/Timer.js';
 
 function TimeRestFigure(props) {
 	const style = {
@@ -16,7 +17,21 @@ function ControlButton(props) {
 }
 
 export default class IndexPage extends React.Component {
+	constructor() {
+		super();
+		this._timer = null;
+		this._tmCount = null;
+
+		this.state = {
+			running: false,
+		};
+	}
+
 	render() {
+		const running = this.state.running;
+		const pause = this.pause.bind(this);
+		const start = this.start.bind(this);
+
 		return <div className="IndexPage">
 				<div className="TimeRest">
 					<TimeRestFigure>5</TimeRestFigure>
@@ -25,15 +40,51 @@ export default class IndexPage extends React.Component {
 					<TimeRestFigure>0</TimeRestFigure>
 				</div>
 				<div className="IndexPage-controller">
-					<ControlButton hidden={!this.isRunning()}>Start</ControlButton>
-					<ControlButton hidden={this.isRunning()}>Pause</ControlButton>
-					<ControlButton disabled={this.isRunning()}>Reset</ControlButton>
+					<ControlButton onClick={start} hidden={running}>Start</ControlButton>
+					<ControlButton onClick={pause} hidden={!running}>Pause</ControlButton>
+					<ControlButton disabled={running}>Reset</ControlButton>
 					<ControlButton>Preferences</ControlButton>
 				</div>
 			</div>;
 	}
 
 	isRunning() {
-		return true;
+		return this._timer && this._timer.isRunning();
+	}
+
+	start() {
+		const timer = this._timer = new Timer();
+
+		timer.start(Date.now());
+		this._startCountingDown();
+
+		this.setState({
+			running: this.isRunning(),
+		});
+	}
+
+	pause() {
+		this._timer.pause();
+		this._stopCountingDown();
+
+		this.setState({
+			running: this.isRunning(),
+		});
+	}
+
+	_startCountingDown() {
+		this._tmCount = setInterval(()=>{
+			this.tick(Date.now());
+		}, 100);
+	}
+
+	_stopCountingDown() {
+		clearInterval(this._tmCount);
+		this._tmCount = null;
+	}
+
+	tick(now) {
+		const startedAt = this._timer && this._timer.startedAt;
+		console.debug('tick', now - startedAt);
 	}
 }
