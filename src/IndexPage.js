@@ -1,5 +1,9 @@
 import React from 'react';
 
+function ControlButton(props) {
+	return <button {...props} className="IndexPage-controller-button" />;
+}
+
 export default class IndexPage extends React.Component {
 	render() {
 		const { figureStyle, delimiterStyle } = this._buildRenderVars();
@@ -12,9 +16,9 @@ export default class IndexPage extends React.Component {
 					<span style={figureStyle} className="TimeRest-figure">0</span>
 				</div>
 				<div className="IndexPage-controller">
-					<button className="IndexPage-controller-button">Start</button>
-					<button className="IndexPage-controller-button">Pause</button>
-					<button className="IndexPage-controller-button">Preferences</button>
+					<ControlButton>Start</ControlButton>
+					<ControlButton disabled={true}>Pause</ControlButton>
+					<ControlButton>Preferences</ControlButton>
 				</div>
 			</div>;
 	}
