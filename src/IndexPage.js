@@ -1,19 +1,28 @@
 import React from 'react';
 
+function TimeRestFigure(props) {
+	const style = {
+		fontSize: '300px',
+	};
+	return <span style={style} {...props} className="TimeRest-figure" />;
+}
+
+function TimeRestDelimiter() {
+	return <TimeRestFigure>:</TimeRestFigure>;
+}
+
 function ControlButton(props) {
 	return <button {...props} className="IndexPage-controller-button" />;
 }
 
 export default class IndexPage extends React.Component {
 	render() {
-		const { figureStyle, delimiterStyle } = this._buildRenderVars();
-
 		return <div className="IndexPage">
 				<div className="TimeRest">
-					<span style={figureStyle} className="TimeRest-figure">5</span>
-					<span style={delimiterStyle} className="TimeRest-figure">:</span>
-					<span style={figureStyle} className="TimeRest-figure">0</span>
-					<span style={figureStyle} className="TimeRest-figure">0</span>
+					<TimeRestFigure>5</TimeRestFigure>
+					<TimeRestDelimiter />
+					<TimeRestFigure>0</TimeRestFigure>
+					<TimeRestFigure>0</TimeRestFigure>
 				</div>
 				<div className="IndexPage-controller">
 					<ControlButton hidden={!this.isRunning()}>Start</ControlButton>
@@ -26,20 +35,5 @@ export default class IndexPage extends React.Component {
 
 	isRunning() {
 		return true;
-	}
-
-	_buildRenderVars() {
-		const figureStyle = {
-			fontSize: '300px',
-		};
-
-		const delimiterStyle = {
-			fontSize: '300px',
-		};
-
-		return {
-			figureStyle,
-			delimiterStyle,
-		};
 	}
 }
