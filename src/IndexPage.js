@@ -16,11 +16,16 @@ export default class IndexPage extends React.Component {
 					<span style={figureStyle} className="TimeRest-figure">0</span>
 				</div>
 				<div className="IndexPage-controller">
-					<ControlButton>Start</ControlButton>
-					<ControlButton disabled={true}>Pause</ControlButton>
+					<ControlButton hidden={!this.isRunning()}>Start</ControlButton>
+					<ControlButton hidden={this.isRunning()}>Pause</ControlButton>
+					<ControlButton disabled={this.isRunning()}>Reset</ControlButton>
 					<ControlButton>Preferences</ControlButton>
 				</div>
 			</div>;
+	}
+
+	isRunning() {
+		return true;
 	}
 
 	_buildRenderVars() {
