@@ -5,7 +5,7 @@
     "js": "browserify -d -t [ babelify ] src/main.js -o out/app.js",
     "js-lint": "eslint src/",
     "start": "npm run build -s; echo Watching...; npm run watch -s",
-    "test": "",
+    "test": "mocha test test/**/*",
     "watch": "chokidar --silent ./src/ ./test/ -c 'echo ! && npm run build'"
   },
   "dependencies": {
