@@ -16,7 +16,7 @@
 
 		computed: {
 			displayTime() {
-				return Math.floor(this.time / 1000)
+				return Math.ceil(this.time / 1000)
 			},
 		},
 	}

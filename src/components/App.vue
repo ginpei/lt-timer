@@ -1,6 +1,6 @@
 <template lang="pug">
 	div
-		Timer(:time="time")
+		Timer(:time="timeRest")
 		Controller(:running="running" :onControl="controller_onControl")
 </template>
 
@@ -19,6 +19,7 @@
 
 		data() {
 			return {
+				allottedTime: 300000,  // 5 min
 				running: false,
 				tickedAt: null,
 				time: 0,
@@ -27,6 +28,9 @@
 		},
 
 		computed: {
+			timeRest() {
+				return this.allottedTime - this.time
+			},
 		},
 
 		methods: {
