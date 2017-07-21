@@ -1,36 +1,70 @@
 <template lang="pug">
 	div
-		h1 {{message}}
-		p
-			button(@click="onclick") Click me!
+		Timer(:time="time")
+		Controller(:running="running" :onControl="controller_onControl")
 </template>
 
 <style lang="sass">
-	body
-		text-align: center
 </style>
 
 <script>
+	const Controller = require('./Controller.vue')
+	const Timer = require('./Timer.vue')
+
 	module.exports = {
+		components: {
+			Controller,
+			Timer,
+		},
+
 		data() {
 			return {
-				on: false,
+				running: false,
+				tickedAt: null,
+				time: 0,
+				tmTimer: null,
 			};
 		},
 
 		computed: {
-			message() {
-				let message = 'Hello World!'
-				if (this.on) {
-					message = message.toUpperCase()
-				}
-				return message
-			},
 		},
 
 		methods: {
-			onclick(event) {
-				this.on = !this.on
+			start() {
+				this.tickedAt = Date.now()
+				this.tmTimer = window.setInterval(()=>{
+					this.updateTime(Date.now())
+				}, 100);
+				this.running = true
+			},
+
+			updateTime(now) {
+				this.time += now - this.tickedAt
+				this.tickedAt = now
+			},
+
+			pause() {
+				this.tickedAt = null
+				window.clearInterval(this.tmTimer)
+				this.tmTimer = null
+				this.running = false
+			},
+
+			reset() {
+				this.pause()
+				this.time = 0
+			},
+
+			controller_onControl({type}) {
+				if (type === 'start') {
+					this.start()
+				}
+				else if (type === 'pause') {
+					this.pause()
+				}
+				else if (type === 'reset') {
+					this.reset()
+				}
 			},
 		},
 	}
