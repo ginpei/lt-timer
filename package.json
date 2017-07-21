@@ -1,27 +1,22 @@
 {
   "private": "true",
   "scripts": {
-    "build": "npm run test && npm run js-lint && npm run js && echo Built!",
-    "js": "browserify -d -t [ babelify ] src/main.js -o out/app.js",
-    "js-lint": "eslint src/",
-    "start": "npm run build -s; echo Watching...; npm run watch -s",
-    "test": "mocha test test/**/*",
-    "watch": "chokidar --silent ./src/ ./test/ -c 'echo ! && npm run build'"
+    "postinstall": "mkdir build || echo OK",
+    "dev": "watchify -dv -t vueify -p browserify-hmr -e src/index.js -o build/app.js",
+    "lint": "eslint --ext js,vue src/",
+    "start": "npm run lint -s & npm run dev -s"
   },
   "dependencies": {
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
-    "babelify": "^7.3.0",
-    "browserify": "^14.1.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "browserify": "^14.4.0",
+    "node-sass": "^4.5.3",
+    "pug": "^2.0.0-rc.2",
+    "vue": "^2.4.2",
+    "vueify": "^9.4.1"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chokidar-cli": "^1.2.0",
-    "eslint": "^3.18.0",
-    "eslint-plugin-react": "^6.10.3",
-    "jsdom": "^9.12.0",
-    "mocha": "^3.2.0"
+    "browserify-hmr": "^0.3.5",
+    "eslint": "^4.2.0",
+    "eslint-plugin-vue": "^3.6.0",
+    "watchify": "^3.9.0"
   }
 }
