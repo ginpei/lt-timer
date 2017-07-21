@@ -45,9 +45,15 @@
 				this.time += now - this.tickedAt
 				this.tickedAt = now
 
-				this.tmTimer = window.requestAnimationFrame(()=>{
-					this.updateTime()
-				});
+				if (this.time >= this.allottedTime) {
+					this.time = 0
+					this.pause()
+				}
+				else {
+					this.tmTimer = window.requestAnimationFrame(()=>{
+						this.updateTime()
+					});
+				}
 			},
 
 			stopUpdatingTime() {
