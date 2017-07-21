@@ -36,21 +36,28 @@
 		methods: {
 			start() {
 				this.tickedAt = Date.now()
-				this.tmTimer = window.setInterval(()=>{
-					this.updateTime(Date.now())
-				}, 100);
+				this.updateTime()
 				this.running = true
 			},
 
-			updateTime(now) {
+			updateTime() {
+				const now = Date.now()
 				this.time += now - this.tickedAt
 				this.tickedAt = now
+
+				this.tmTimer = window.requestAnimationFrame(()=>{
+					this.updateTime()
+				});
+			},
+
+			stopUpdatingTime() {
+				window.cancelAnimationFrame(this.tmTimer)
+				this.tmTimer = null
 			},
 
 			pause() {
 				this.tickedAt = null
-				window.clearInterval(this.tmTimer)
-				this.tmTimer = null
+				this.stopUpdatingTime()
 				this.running = false
 			},
 
