@@ -14,9 +14,9 @@
 <script>
 	module.exports = {
 		props: [
-			"running",
-			"finished",
-			"onControl",
+			'running',
+			'finished',
+			'onControl',
 		],
 
 		methods: {
