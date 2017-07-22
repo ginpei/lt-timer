@@ -2,15 +2,6 @@
 	Wrapper(:running="running" :finishing="finishing" :aboutToFinish="aboutToFinish" :timeRest="timeRest")
 		Timer(:time="timeRest")
 		Controller(:running="running" :finished="finished" :onControl="controller_onControl")
-		p
-			input(:checked="finishing" type="radio" disabled)
-			| Finishing
-			br
-			input(:checked="aboutToFinish" type="radio" disabled)
-			| About to finish
-			br
-			input(:checked="finished" type="radio" disabled)
-			| Finished
 </template>
 
 <style lang="sass">
