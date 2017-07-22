@@ -19,17 +19,19 @@
 <script>
 	const Controller = require('./Controller.vue')
 	const Timer = require('./Timer.vue')
+	const Wrapper = require('./Wrapper.vue')
 
 	module.exports = {
 		components: {
 			Controller,
 			Timer,
+			Wrapper,
 		},
 
 		data() {
 			return {
 				aboutToFinishAt: 10000,  // 10sec
-				allottedTime: 30000,  // 5 min
+				allottedTime: 300000,  // 5 min
 				finishingAt: 60000,  // 60sec
 				running: false,
 				tickedAt: null,
