@@ -1,7 +1,16 @@
 <template lang="pug">
 	div
 		Timer(:time="timeRest")
-		Controller(:running="running" :onControl="controller_onControl")
+		Controller(:running="running" :finished="finished" :onControl="controller_onControl")
+		p
+			input(:checked="finishing" type="radio" disabled)
+			| Finishing
+			br
+			input(:checked="aboutToFinish" type="radio" disabled)
+			| About to finish
+			br
+			input(:checked="finished" type="radio" disabled)
+			| Finished
 </template>
 
 <style lang="sass">
@@ -19,7 +28,9 @@
 
 		data() {
 			return {
-				allottedTime: 300000,  // 5 min
+				aboutToFinishAt: 10000,  // 10sec
+				allottedTime: 30000,  // 5 min
+				finishingAt: 60000,  // 60sec
 				running: false,
 				tickedAt: null,
 				time: 0,
@@ -28,8 +39,20 @@
 		},
 
 		computed: {
+			aboutToFinish() {
+				return this.timeRest < this.aboutToFinishAt
+			},
+
 			timeRest() {
-				return this.allottedTime - this.time
+				return Math.max(this.allottedTime - this.time, 0)
+			},
+
+			finishing() {
+				return this.timeRest < this.finishingAt
+			},
+
+			finished() {
+				return this.timeRest <= 0
 			},
 		},
 
@@ -46,7 +69,6 @@
 				this.tickedAt = now
 
 				if (this.time >= this.allottedTime) {
-					this.time = 0
 					this.pause()
 				}
 				else {

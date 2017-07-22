@@ -1,6 +1,6 @@
 <template lang="pug">
 	div
-		button(v-show="!running" @click="start_onclick") Start
+		button(:disabled="finished" v-show="!running" @click="start_onclick") Start
 		button(v-show="running" @click="pause_onclick") Pause
 		button(:disabled="running" @click="reset_onclick") Reset
 </template>
@@ -15,6 +15,7 @@
 	module.exports = {
 		props: [
 			"running",
+			"finished",
 			"onControl",
 		],
 
