@@ -1,5 +1,5 @@
 <template lang="pug">
-	div
+	Wrapper(:running="running" :finishing="finishing" :aboutToFinish="aboutToFinish" :timeRest="timeRest")
 		Timer(:time="timeRest")
 		Controller(:running="running" :finished="finished" :onControl="controller_onControl")
 		p
