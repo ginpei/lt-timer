@@ -5,7 +5,7 @@
 
 <style lang="sass" scoped>
 	.timer
-		font-family: monospace
+		font-family: 'Share Tech Mono', monospace
 		font-weight: bold
 		height: 100%
 		margin: 0
