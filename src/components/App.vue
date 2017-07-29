@@ -1,10 +1,24 @@
 <template lang="pug">
-	Wrapper(:running="running" :finishing="finishing" :aboutToFinish="aboutToFinish" :timeRest="timeRest")
-		Timer(:time="timeRest")
-		Controller(:running="running" :finished="finished" :onControl="controller_onControl")
+	Wrapper.wrapper(:running="running" :finishing="finishing" :aboutToFinish="aboutToFinish" :timeRest="timeRest")
+		Timer.main(:time="timeRest")
+		Controller.toolbar(:running="running" :finished="finished" :onControl="controller_onControl")
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
+.wrapper
+	display: grid
+	grid-template-rows: auto 100px
+	height: 100vh
+	left: 0
+	position: absolute
+	top: 0
+	width: 100vw
+
+.main
+	text-align: center
+
+.toolbar
+	text-align: center
 </style>
 
 <script>
