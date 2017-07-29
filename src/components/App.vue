@@ -15,7 +15,6 @@
 	width: 100vw
 
 .main
-	text-align: center
 
 .toolbar
 	text-align: center

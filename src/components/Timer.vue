@@ -6,6 +6,19 @@
 <style lang="sass" scoped>
 	.timer
 		font-family: monospace
+
+	h1
+		height: 100%
+		margin: 0
+		text-align: center
+
+		&::before
+			content: ""
+			display: inline-block
+			height: 100%
+			vertical-align: middle
+			width: 0
+
 </style>
 
 <script>
