@@ -1,14 +1,12 @@
 <template lang="pug">
 	.timer
-		h1
-			span(ref="text" :style="styles") {{displayTime}}
+		span(ref="text" :style="styles") {{displayTime}}
 </template>
 
 <style lang="sass" scoped>
 	.timer
 		font-family: monospace
-
-	h1
+		font-weight: bold
 		height: 100%
 		margin: 0
 		text-align: center
