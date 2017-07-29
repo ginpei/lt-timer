@@ -17,7 +17,7 @@
 .main
 
 .toolbar
-	text-align: center
+
 </style>
 
 <script>

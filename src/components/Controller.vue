@@ -6,9 +6,11 @@
 </template>
 
 <style lang="sass" scoped>
+	div
+		display: flex
+
 	button
-		height: 100px
-		width: 100px
+		flex-grow: 1
 </style>
 
 <script>
