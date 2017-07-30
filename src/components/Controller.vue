@@ -27,8 +27,8 @@
 			--fg-color: #666
 
 		&.reset
-			--bg-color: #fee
-			--fg-color: #600
+			--bg-color: #ffe
+			--fg-color: #660
 
 			&:disabled
 				--bg-color: #fff
