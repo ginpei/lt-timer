@@ -10,7 +10,7 @@
 		display: flex
 
 	button
-		flex-grow: 1
+		flex-basis: 100%
 </style>
 
 <script>
