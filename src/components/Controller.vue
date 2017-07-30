@@ -2,7 +2,7 @@
 	div
 		button.start(:disabled="finished" v-show="!running" @click="start_onclick") Start
 		button.pause(v-show="running" @click="pause_onclick") Pause
-		button.reset(:disabled="running" @click="reset_onclick") Reset
+		button.reset(:disabled="!started || running" @click="reset_onclick") Reset
 </template>
 
 <style lang="sass" scoped>
@@ -39,6 +39,7 @@
 <script>
 	module.exports = {
 		props: [
+			'started',
 			'running',
 			'finished',
 			'onControl',

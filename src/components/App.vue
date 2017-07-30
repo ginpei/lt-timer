@@ -1,7 +1,7 @@
 <template lang="pug">
 	Wrapper.wrapper(:running="running" :finishing="finishing" :aboutToFinish="aboutToFinish" :timeRest="timeRest")
 		Timer.main(:time="timeRest")
-		Controller.toolbar(:running="running" :finished="finished" :onControl="controller_onControl")
+		Controller.toolbar(:started="started" :running="running" :finished="finished" :onControl="controller_onControl")
 		.sounds
 			audio(ref="audioAlert" src="static/D0002011516_00000_A_001.m4a")
 			audio(ref="audioTimeup" src="static/D0002011522_00000_A_001.m4a")
@@ -51,6 +51,10 @@
 		},
 
 		computed: {
+			started() {
+				return this.time !== 0
+			},
+
 			aboutToFinish() {
 				return this.timeRest < this.aboutToFinishAt
 			},
