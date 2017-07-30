@@ -115,14 +115,27 @@
 			reset() {
 				this.pause()
 				this.time = 0
+
+				this.stopAlert()
+				this.stopTimeup()
 			},
 
 			playAlert() {
 				this.$refs.audioAlert.play()
 			},
 
+			stopAlert() {
+				this.$refs.audioAlert.pause()
+				this.$refs.audioAlert.currentTime = 0
+			},
+
 			playTimeup() {
 				this.$refs.audioTimeup.play()
+			},
+
+			stopTimeup() {
+				this.$refs.audioTimeup.pause()
+				this.$refs.audioTimeup.currentTime = 0
 			},
 
 			controller_onControl({type}) {
