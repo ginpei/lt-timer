@@ -2,12 +2,15 @@
 	Wrapper.wrapper(:running="running" :finishing="finishing" :aboutToFinish="aboutToFinish" :timeRest="timeRest")
 		Timer.main(:time="timeRest")
 		Controller.toolbar(:running="running" :finished="finished" :onControl="controller_onControl")
+		.sounds
+			audio(ref="audioAlert" src="static/D0002011516_00000_A_001.m4a")
+			audio(ref="audioTimeup" src="static/D0002011522_00000_A_001.m4a")
 </template>
 
 <style lang="sass" scoped>
 .wrapper
 	display: grid
-	grid-template-rows: auto 100px
+	grid-template-rows: auto 100px 0
 	height: 100vh
 	left: 0
 	position: absolute
@@ -17,6 +20,9 @@
 .main
 
 .toolbar
+
+.sounds
+	overflow: hidden
 
 </style>
 
@@ -62,6 +68,17 @@
 			},
 		},
 
+		watch: {
+			timeRest(newVal, oldVal) {
+				if (oldVal > this.finishingAt && newVal <= this.finishingAt) {
+					this.playAlert()
+				}
+				else if (oldVal > 0 && newVal <= 0) {
+					this.playTimeup()
+				}
+			},
+		},
+
 		methods: {
 			start() {
 				this.tickedAt = Date.now()
@@ -98,6 +115,14 @@
 			reset() {
 				this.pause()
 				this.time = 0
+			},
+
+			playAlert() {
+				this.$refs.audioAlert.play()
+			},
+
+			playTimeup() {
+				this.$refs.audioTimeup.play()
 			},
 
 			controller_onControl({type}) {
