@@ -1,8 +1,8 @@
 <template lang="pug">
 	div
-		button(:disabled="finished" v-show="!running" @click="start_onclick") Start
-		button(v-show="running" @click="pause_onclick") Pause
-		button(:disabled="running" @click="reset_onclick") Reset
+		button.start(:disabled="finished" v-show="!running" @click="start_onclick") Start
+		button.pause(v-show="running" @click="pause_onclick") Pause
+		button.reset(:disabled="running" @click="reset_onclick") Reset
 </template>
 
 <style lang="sass" scoped>
@@ -10,7 +10,30 @@
 		display: flex
 
 	button
+		--bg-color: #fff
+		--fg-color: #fff
+
+		background-color: var(--bg-color)
+		border-style: none
+		color: var(--fg-color)
 		flex-basis: 100%
+
+		&.start
+			--bg-color: #efe
+			--fg-color: #060
+
+		&.pause
+			--bg-color: #f9f9f9
+			--fg-color: #666
+
+		&.reset
+			--bg-color: #fee
+			--fg-color: #600
+
+			&:disabled
+				--bg-color: #fff
+				--fg-color: #ccc
+
 </style>
 
 <script>
