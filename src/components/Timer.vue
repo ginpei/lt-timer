@@ -39,6 +39,8 @@
 		mounted() {
 			this.f_resize = () => this.updateScale()
 			window.addEventListener('resize', this.f_resize)
+
+			this.updateScale()
 		},
 
 		beforeDestroy() {
