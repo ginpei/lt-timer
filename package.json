@@ -2,14 +2,18 @@
   "private": "true",
   "scripts": {
     "postinstall": "mkdir build || echo OK",
+    "build": "docker-compose run node bash -c \"NODE_ENV=production npm run build-exec -s\"",
+    "build-exec": "browserify -g envify -t vueify -e src/index.js | uglifyjs > gh-pages/build/app.js && cp -r ./index.html ./static/ ./gh-pages/",
     "dev": "watchify -dv -t vueify -p browserify-hmr -e src/index.js -o build/app.js",
     "lint": "eslint --ext js,vue src/",
     "start": "npm run lint -s & npm run dev -s"
   },
   "dependencies": {
     "browserify": "^14.4.0",
+    "envify": "^4.1.0",
     "node-sass": "^4.5.3",
     "pug": "^2.0.0-rc.2",
+    "uglify-es": "^3.0.27",
     "vue": "^2.4.2",
     "vueify": "^9.4.1"
   },
