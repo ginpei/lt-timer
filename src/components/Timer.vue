@@ -87,7 +87,6 @@
 				const th = elText.clientHeight
 
 				this.scale = Math.min(cw / tw, ch / th) * 0.95
-				console.debug(cw, tw, ch, th, this.scale);
 			},
 		},
 	}
