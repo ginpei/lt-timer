@@ -152,6 +152,9 @@
 				else if (type === 'reset') {
 					this.reset()
 				}
+				else if (type === 'settings') {
+					console.debug('settings');
+				}
 			},
 		},
 	}
