@@ -41,6 +41,18 @@
 						td
 							button.button(@click="revert_onclick" type="button") Revert to previous
 
+			table.settingsTable
+				caption About
+				tbody
+					tr
+						th Author
+						td
+							a(href="https://ginpei.info/") Ginpei Takanashi
+					tr
+						th GitHub
+						td
+							a(href="https://github.com/ginpei/lt-timer") ginpei/lt-timer
+
 </template>
 
 <style lang="sass" spec>
