@@ -1,12 +1,12 @@
 {
   "private": "true",
   "scripts": {
-    "postinstall": "mkdir build || echo OK",
     "build": "browserify -g envify -t vueify -e src/index.js | babili > gh-pages/build/app.js && cp -r ./index.html ./static/ ./gh-pages/",
-    "d-sh": "docker-compose run node bash",
     "d-build": "docker-compose run node bash -c \"npm install && NODE_ENV=production npm run build -s\"",
+    "d-sh": "docker-compose run node bash",
     "dev": "watchify -dv -t vueify -p browserify-hmr -e src/index.js -o build/app.js",
     "lint": "eslint --ext js,vue src/",
+    "postinstall": "mkdir build || echo OK",
     "start": "npm run lint -s & npm run dev -s"
   },
   "dependencies": {
