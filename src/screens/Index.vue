@@ -153,7 +153,7 @@
 					this.reset()
 				}
 				else if (type === 'settings') {
-					console.debug('settings');
+					this.$router.push('/settings/')
 				}
 			},
 		},
