@@ -17,13 +17,13 @@
 					tr
 						th Time to Talk
 						td
-							input.timeInput(v-model="allottedTimeText" type="text")
+							input.timeInput(v-model="allottedTimeText" @change="allottedTime_onchange" type="text")
 					tr
 						th
 							| Warn When at 
 							time {{finishingAt | time}}
 						td
-							input(v-model="finishingAt" type="range" min="0" max="300000" step="10000")
+							input(v-model="finishingAt" :max="allottedTime" @change="" type="range" min="0" step="10000")
 
 			table.settingsTable
 				caption Preset
@@ -117,7 +117,30 @@
 
 		methods: {
 			allottedTime_onchange(event) {
-				console.debug(this.allottedTimeText);
+				const text = this.allottedTimeText
+				// "300" -> 5 min
+				if (/^\d+$/.test(text)) {
+					this.allottedTime = parseInt(text, 10) * 1000
+				}
+				// "5:00" -> 5 min
+				// "5:0" -> 5 min
+				// ":30" -> 30 sec
+				else if (/^\d*:\d\d?$/.test(text)) {
+					const [minText, secText] = text.split(':')
+					const min = parseInt(minText, 10)
+					const sec = parseInt(secText, 10)
+					this.allottedTime = (min * 60 + sec) * 1000
+				}
+
+				if (this.allottedTime < 10) {
+					this.allottedTime = 300000
+				}
+
+				this.allottedTimeText = this.$options.filters.time(this.allottedTime)
+
+				if (this.finishingAt > this.allottedTime) {
+					this.finishingAt = 0
+				}
 			},
 
 			onsubmit(event) {
