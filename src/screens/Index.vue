@@ -75,7 +75,9 @@
 		watch: {
 			timeRest(newVal, oldVal) {
 				if (oldVal > this.finishingAt && newVal <= this.finishingAt) {
-					this.playAlert()
+					if (this.$store.getters['time/warningAvailable']) {
+						this.playAlert()
+					}
 				}
 				else if (oldVal > 0 && newVal <= 0) {
 					this.playTimeup()

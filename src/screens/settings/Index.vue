@@ -20,8 +20,11 @@
 							input.timeInput(v-model="allottedTimeText" @change="allottedTime_onchange" type="text")
 					tr
 						th
-							| Warn When at 
-							time {{finishingAt | time}}
+							span(v-if="warningAvailable")
+								| Warn When at 
+								time {{finishingAt | time}}
+							span(v-else)
+								| No warning
 						td
 							input(v-model="finishingAt" :max="allottedTime" @change="" type="range" min="0" step="10000")
 
@@ -113,6 +116,12 @@
 				const secNumber = Math.floor(value / 1000) % 60
 				const sec = secNumber < 10 ? '0' + secNumber : secNumber.toString()
 				return `${min}:${sec}`
+			},
+		},
+
+		computed: {
+			warningAvailable() {
+				return this.finishingAt > 0
 			},
 		},
 

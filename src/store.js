@@ -15,6 +15,9 @@ module.exports = new Vuex.Store({
 			},
 
 			getters: {
+				warningAvailable(state) {
+					return state.finishingAt > 0
+				},
 			},
 
 			mutations: {
