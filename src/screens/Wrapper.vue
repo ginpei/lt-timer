@@ -21,7 +21,7 @@
 		computed: {
 			classes() {
 				return {
-					flashing: this.finishing && (!this.aboutToFinish || this.halfUpSecond),
+					flashing: this.aboutToFinish ? this.halfUpSecond : this.finishing,
 				}
 			},
 

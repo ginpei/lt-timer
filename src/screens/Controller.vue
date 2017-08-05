@@ -3,6 +3,8 @@
 		button.start(:disabled="finished" v-show="!running" @click="start_onclick") Start
 		button.pause(v-show="running" @click="pause_onclick") Pause
 		button.reset(:disabled="!started || running" @click="reset_onclick") Reset
+		button.settings(:disabled="running" @click="settings_onclick")
+			i.fa.fa-cog(aria-hidden="true")
 </template>
 
 <style lang="sass" scoped>
@@ -30,9 +32,17 @@
 			--bg-color: #ffe
 			--fg-color: #660
 
-			&:disabled
-				--bg-color: #fff
-				--fg-color: #ccc
+		&.settings
+			--bg-color: #f9f9f9
+			--fg-color: #666
+
+			flex-basis: 100px
+			flex-grow: 0
+			flex-shrink: 0
+
+		&:disabled
+			--bg-color: #fff
+			--fg-color: #ccc
 
 </style>
 
@@ -56,6 +66,10 @@
 
 			reset_onclick(event) {
 				this.onControl({ type: 'reset' })
+			},
+
+			settings_onclick(event) {
+				this.onControl({ type: 'settings' })
 			},
 		},
 	}
