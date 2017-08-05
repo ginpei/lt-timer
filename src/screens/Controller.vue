@@ -3,7 +3,8 @@
 		button.start(:disabled="finished" v-show="!running" @click="start_onclick") Start
 		button.pause(v-show="running" @click="pause_onclick") Pause
 		button.reset(:disabled="!started || running" @click="reset_onclick") Reset
-		button.settings(:disabled="running" @click="settings_onclick") Settings
+		button.settings(:disabled="running" @click="settings_onclick")
+			i.fa.fa-cog(aria-hidden="true")
 </template>
 
 <style lang="sass" scoped>
