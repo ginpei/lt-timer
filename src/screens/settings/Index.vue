@@ -31,7 +31,7 @@
 					tr
 						th Default Times
 						td
-							button.button Reset to Default
+							button.button(@click="resetDefault_onclick") Reset to Default
 
 </template>
 
@@ -141,6 +141,12 @@
 				if (this.finishingAt > this.allottedTime) {
 					this.finishingAt = 0
 				}
+			},
+
+			resetDefault_onclick(event) {
+				this.allottedTime = 300000
+				this.allottedTimeText = this.$options.filters.time(300000)
+				this.finishingAt = 60000
 			},
 
 			onsubmit(event) {
