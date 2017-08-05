@@ -36,6 +36,11 @@
 						td
 							button.button(@click="resetDefault_onclick" type="button") Reset to Default
 
+					tr
+						th Revert
+						td
+							button.button(@click="revert_onclick" type="button") Revert to the last settings
+
 </template>
 
 <style lang="sass" spec>
@@ -102,9 +107,12 @@
 <script>
 	module.exports = {
 		data() {
+			this.lastAllottedTime = this.$store.state.time.allottedTime
+			this.lastFinishingAt = this.$store.state.time.finishingAt
+
 			const data = {
-				allottedTime: this.$store.state.time.allottedTime,
-				finishingAt: this.$store.state.time.finishingAt,
+				allottedTime: this.lastAllottedTime,
+				finishingAt: this.lastFinishingAt,
 			}
 			data.allottedTimeText = this.$options.filters.time(data.allottedTime)
 			return data
@@ -175,6 +183,12 @@
 			resetDefault_onclick(event) {
 				this.$store.dispatch('time/setAllotedTime', 300000)
 				this.$store.dispatch('time/setFinishingAt', 60000)
+				this.reload()
+			},
+
+			revert_onclick(event) {
+				this.$store.dispatch('time/setAllotedTime', this.lastAllottedTime)
+				this.$store.dispatch('time/setFinishingAt', this.lastFinishingAt)
 				this.reload()
 			},
 		},
