@@ -3,11 +3,11 @@
 
 		header.header
 			.container
-				h1.heading Settings
+				button.button.done(@click="back_onclick")
+					i.fa.fa-arrow-circle-left(aria-hidden="true")
+					|  Back
 
-				.buttonRow
-					button.button(@click="cancel_onclick") Cancel
-					button.button.done(@click="save_onclick") Save
+				h1.heading Settings
 
 		.container
 
@@ -26,7 +26,7 @@
 							span(v-else)
 								| No warning
 						td
-							input(v-model="finishingAt" :max="allottedTime" @change="" type="range" min="0" step="10000")
+							input(v-model="finishingAt" :max="allottedTime" @change="finishingAt_onchange" type="range" min="0" step="10000")
 
 			table.settingsTable
 				caption Preset
@@ -126,11 +126,20 @@
 		},
 
 		methods: {
+			reload() {
+				this.allottedTime = this.$store.state.time.allottedTime
+				this.finishingAt = this.$store.state.time.finishingAt
+
+				this.allottedTimeText = this.$options.filters.time(this.allottedTime)
+			},
+
 			allottedTime_onchange(event) {
+				let allottedTime = 0
+
 				const text = this.allottedTimeText
 				// "300" -> 5 min
 				if (/^\d+$/.test(text)) {
-					this.allottedTime = parseInt(text, 10) * 1000
+					allottedTime = parseInt(text, 10) * 1000
 				}
 				// "5:00" -> 5 min
 				// "5:0" -> 5 min
@@ -139,38 +148,34 @@
 					const [minText, secText] = text.split(':')
 					const min = parseInt(minText, 10)
 					const sec = parseInt(secText, 10)
-					this.allottedTime = (min * 60 + sec) * 1000
+					allottedTime = (min * 60 + sec) * 1000
 				}
 
-				if (this.allottedTime < 10) {
-					this.allottedTime = 300000
+				if (allottedTime < 1) {
+					allottedTime = 300000
 				}
 
-				this.allottedTimeText = this.$options.filters.time(this.allottedTime)
+				this.$store.dispatch('time/setAllotedTime', allottedTime)
+				this.reload()
+			},
 
-				if (this.finishingAt > this.allottedTime) {
-					this.finishingAt = 0
-				}
+			finishingAt_onchange(event) {
+				this.$store.dispatch('time/setFinishingAt', this.finishingAt)
+				this.reload()
 			},
 
 			goBack() {
 				this.$router.push('/')
 			},
 
-			cancel_onclick(event) {
-				this.goBack()
-			},
-
-			save_onclick(event) {
-				this.$store.dispatch('time/setAllotedTime', this.allottedTime)
-				this.$store.dispatch('time/setFinishingAt', this.finishingAt)
+			back_onclick(event) {
 				this.goBack()
 			},
 
 			resetDefault_onclick(event) {
-				this.allottedTime = 300000
-				this.allottedTimeText = this.$options.filters.time(300000)
-				this.finishingAt = 60000
+				this.$store.dispatch('time/setAllotedTime', 300000)
+				this.$store.dispatch('time/setFinishingAt', 60000)
+				this.reload()
 			},
 		},
 	}

@@ -31,8 +31,12 @@ module.exports = new Vuex.Store({
 			},
 
 			actions: {
-				setAllotedTime({ commit }, payload) {
+				setAllotedTime({ state, commit, dispatch }, payload) {
 					commit('SET_ALLOTED_TIME', payload)
+
+					if (state.finishingAt > payload) {
+						dispatch('setFinishingAt', 0)
+					}
 				},
 
 				setFinishingAt({ commit }, payload) {
