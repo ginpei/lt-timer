@@ -19,9 +19,10 @@
 						td
 							input.timeInput(v-model="allottedTimeText" type="text")
 					tr
-						th Warn When
+						th
+							| Warn When at 
+							time {{finishingAt | time}}
 						td
-							time.time {{finishingAt | time}}
 							input(v-model="finishingAt" type="range" min="0" max="300000" step="10000")
 
 			table.settingsTable
@@ -92,11 +93,6 @@
 
 	.timeInput
 		text-align: right
-
-	.time
-		display: inline-block
-		text-align: right
-		width: 2em
 
 </style>
 
