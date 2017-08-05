@@ -32,14 +32,14 @@
 				caption Preset
 				tbody
 					tr
-						th Default Times
+						th Default: {{$store.state.time.defaultAllottedTime | time}} ({{$store.state.time.defaultFinishingAt | time}})
 						td
-							button.button(@click="resetDefault_onclick" type="button") Reset to Default
+							button.button(@click="resetDefault_onclick" type="button") Reset to default
 
 					tr
-						th Revert
+						th Previous: {{lastAllottedTime | time}} ({{lastFinishingAt | time}})
 						td
-							button.button(@click="revert_onclick" type="button") Revert to the last settings
+							button.button(@click="revert_onclick" type="button") Revert to previous
 
 </template>
 
