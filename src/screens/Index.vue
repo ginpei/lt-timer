@@ -40,9 +40,9 @@
 
 		data() {
 			return {
-				aboutToFinishAt: 10000,  // 10sec
-				allottedTime: 300000,  // 5 min
-				finishingAt: 60000,  // 60sec
+				aboutToFinishAt: this.$store.state.time.aboutToFinishAt,
+				allottedTime: this.$store.state.time.allottedTime,
+				finishingAt: this.$store.state.time.finishingAt,
 				running: false,
 				tickedAt: null,
 				time: 0,

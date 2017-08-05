@@ -1,15 +1,15 @@
 <template lang="pug">
-	.main(@submit.prevent="onsubmit")
+	div
 
 		header.header
 			.container
 				h1.heading Settings
 
 				.buttonRow
-					button.button.cancel Cancel
-					button.button.done Save
+					button.button(@click="cancel_onclick") Cancel
+					button.button.done(@click="save_onclick") Save
 
-		form.container
+		.container
 
 			table.settingsTable
 				caption Times
@@ -31,7 +31,7 @@
 					tr
 						th Default Times
 						td
-							button.button(@click="resetDefault_onclick") Reset to Default
+							button.button(@click="resetDefault_onclick" type="button") Reset to Default
 
 </template>
 
@@ -99,11 +99,12 @@
 <script>
 	module.exports = {
 		data() {
-			return {
-				allottedTime: 300000,
-				allottedTimeText: this.$options.filters.time(300000),
-				finishingAt: 60000,
+			const data = {
+				allottedTime: this.$store.state.time.allottedTime,
+				finishingAt: this.$store.state.time.finishingAt,
 			}
+			data.allottedTimeText = this.$options.filters.time(data.allottedTime)
+			return data
 		},
 
 		filters: {
@@ -143,14 +144,24 @@
 				}
 			},
 
+			goBack() {
+				this.$router.push('/')
+			},
+
+			cancel_onclick(event) {
+				this.goBack()
+			},
+
+			save_onclick(event) {
+				this.$store.dispatch('time/setAllotedTime', this.allottedTime)
+				this.$store.dispatch('time/setFinishingAt', this.finishingAt)
+				this.goBack()
+			},
+
 			resetDefault_onclick(event) {
 				this.allottedTime = 300000
 				this.allottedTimeText = this.$options.filters.time(300000)
 				this.finishingAt = 60000
-			},
-
-			onsubmit(event) {
-				console.debug('hello');
 			},
 		},
 	}
