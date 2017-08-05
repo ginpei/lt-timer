@@ -160,7 +160,7 @@
 				}
 
 				if (allottedTime < 1) {
-					allottedTime = 300000
+					allottedTime = this.$store.state.time.defaultAllottedTime
 				}
 
 				this.$store.dispatch('time/setAllotedTime', allottedTime)
@@ -181,8 +181,8 @@
 			},
 
 			resetDefault_onclick(event) {
-				this.$store.dispatch('time/setAllotedTime', 300000)
-				this.$store.dispatch('time/setFinishingAt', 60000)
+				this.$store.dispatch('time/setAllotedTime', this.$store.state.time.defaultAllottedTime)
+				this.$store.dispatch('time/setFinishingAt', this.$store.state.time.defaultFinishingAt)
 				this.reload()
 			},
 

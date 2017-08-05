@@ -11,6 +11,8 @@ module.exports = new Vuex.Store({
 			state: {
 				aboutToFinishAt: 10000,  // 10 sec
 				allottedTime: 300000,  // 5 min
+				defaultAllottedTime: 300000,  // 5 min
+				defaultFinishingAt: 60000,  // 1 min
 				finishingAt: 60000,  // 1 min
 			},
 
